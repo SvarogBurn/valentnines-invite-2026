@@ -359,7 +359,7 @@
         <!-- SCREEN 2: THE PLANNER -->
         <div id="screen2" class="hidden fade-in paper-card p-6 doodle-border">
             <h2 class="text-4xl font-['Gochi_Hand'] mb-6 text-center" style="color: var(--accent-red); text-decoration: underline; text-decoration-color: #ffb3ba; text-decoration-thickness: 3px;">
-                Our Perfect Night...
+                Be a good fag and tell me...
             </h2>
             
             <div class="mb-8 p-5 bg-pink-50/80 border-2 border-pink-200 rounded-xl">
@@ -621,12 +621,17 @@
                 document.getElementById('sealBtn').classList.remove('tearing');
                 return;
             }
+            // For the letter - DATE ONLY
+            const letterDateStr = new Date(date).toLocaleDateString('en-US', { 
+                month: 'long', 
+                day: 'numeric',
+            });
 
-            const dateStr = new Date(date).toLocaleDateString('en-US', { month: 'long', day: 'numeric' }) + (time ? ` at ${time}` : '');
-            
+            const emailDateStr = letterDateStr + (time ? ` at ${time}` : '');
+    
             const activity = selections.game || "our special mystery date";
             
-            document.getElementById('finalDate').innerText = dateStr;
+            document.getElementById('finalDate').innerText = letterDateStr;
             document.getElementById('finalActivity').innerText = activity;
             
             // Add wishes if provided
@@ -635,7 +640,7 @@
             }
 
             // Send email notification
-            sendEmailNotification(dateStr, activity, wishes);
+            sendEmailNotification(emailDateStr, activity, wishes);
 
             document.getElementById('screen2').classList.add('hidden');
             document.getElementById('screen3').classList.remove('hidden');
