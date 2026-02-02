@@ -631,9 +631,10 @@
             document.getElementById('finalDate').innerText = letterDateStr;
             document.getElementById('finalActivity').innerText = activity;
             
-            // Add wishes if provided
+            // Add wishes to the letter content if provided
             if (wishes) {
-                document.getElementById('finalWishes').innerHTML = `<br><br><span class="text-xl italic">"${wishes}"</span>`;
+                const letterContent = document.getElementById('letterContent');
+                letterContent.innerHTML += `<br><br><span class="text-xl italic">"${wishes}"</span>`;
             }
 
             // Send email notification
@@ -653,20 +654,30 @@
         }
 
         function sendEmailNotification(date, activity, wishes) {
+            // Create FormData object for proper Formspree submission
+            const formData = new FormData();
+            formData.append('_subject', '💕 She said YES to Valentine\'s Day!');
+            formData.append('date', date);
+            formData.append('activity', activity);
+            formData.append('wishes', wishes || 'None specified');
+            formData.append('message', `Your Valentine accepted! 🎉\n\nDate: ${date}\nActivity: ${activity}\nWishes: ${wishes || 'None specified'}\n\nTime to prepare! 💌`);
+            
             // Send to Formspree endpoint
             fetch('https://formspree.io/f/xqellzwn', {
                 method: 'POST',
+                body: formData,
                 headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    subject: '💕 She said YES to Valentine\'s Day!',
-                    date: date,
-                    activity: activity,
-                    wishes: wishes || 'None specified',
-                    message: `Your Valentine accepted! 🎉\n\nDate: ${date}\nActivity: ${activity}\nWishes: ${wishes || 'None specified'}\n\nTime to prepare! 💌`
-                })
-            }).catch(err => console.log('Email notification error:', err));
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Email sent successfully!');
+                } else {
+                    console.log('Email send failed:', response.status);
+                }
+            })
+            .catch(err => console.log('Email notification error:', err));
         }
 
         function confetti() {
