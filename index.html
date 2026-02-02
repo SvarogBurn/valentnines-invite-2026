@@ -630,14 +630,8 @@
             
             document.getElementById('finalDate').innerText = letterDateStr;
             document.getElementById('finalActivity').innerText = activity;
-            
-            // Add wishes to the letter content if provided
-            if (wishes) {
-                const letterContent = document.getElementById('letterContent');
-                letterContent.innerHTML += `<br><br><span class="text-xl italic">"${wishes}"</span>`;
-            }
 
-            // Send email notification
+            // Send email notification (wishes are included in email but not displayed on card)
             sendEmailNotification(emailDateStr, activity, wishes);
 
             document.getElementById('screen2').classList.add('hidden');
