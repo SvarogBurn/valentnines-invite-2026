@@ -2,13 +2,13 @@
 function sendEmailNotification(date, activity, wishes) {
     const formData = new FormData();
     
-    formData.append('_subject', '💕 She said YES to Valentine\'s Day!');
+    formData.append('_subject', 'They said yes');
     formData.append('date', date);
     formData.append('activity', activity);
     formData.append('wishes', wishes || 'None specified');
     formData.append('message', buildEmailMessage(date, activity, wishes));
     
-    fetch('https://formspree.io/f/xqellzwn', {
+    fetch('https://formspree.io/f/', { //xqellzwn
         method: 'POST',
         body: formData,
         headers: {
