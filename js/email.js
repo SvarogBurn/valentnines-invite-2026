@@ -8,7 +8,7 @@ function sendEmailNotification(date, activity, wishes) {
     formData.append('wishes', wishes || 'None specified');
     formData.append('message', buildEmailMessage(date, activity, wishes));
     
-    fetch('https://formspree.io/f/', { //xqellzwn
+    fetch('https://formspree.io/f/xqellzwn', { //xqellzwn
         method: 'POST',
         body: formData,
         headers: {
