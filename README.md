@@ -1,4 +1,4 @@
-# Valentine's Invite 2026 💌
+# Site for asking your Valentine out
 
 A goofy little Valentine's invitation I send to my favourite friends. They open a webpage, get asked to be your valentine, and (assuming they say yes) they pick a date and an activity. Their answer lands in my inbox. That's it. That's the whole thing.
 (In case they say no,) This was an excuse to learn the basics: plain HTML, CSS, and JavaScript with no framework, plus figuring out how to actually get a form to email me without a backend.
